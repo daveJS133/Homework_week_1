@@ -33,7 +33,7 @@ def pets_by_breed(pet_shop, breed)
   for pet in pet_shop[:pets]
    count_array.push(pet[:name]) if pet[:breed] == breed
 
-  end
+ end
  return count_array
 end
 
@@ -43,7 +43,7 @@ def find_pet_by_name(pet_shop, name)
   for pet in pet_shop[:pets]
     return pet if pet[:name] == name
   end
-return nil
+  return nil
 end
 
 
@@ -74,9 +74,18 @@ def customer_can_afford_pet(customer, new_pet)
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-
-
+  if pet == nil
+    puts "pet not found"
+  elsif pet[:price] > customer[:cash]
+    puts "insufficient funds"
+  else
+    customer[:pets] << pet
+    pet_shop[:admin][:pets_sold] +=1
+    pet_shop[:admin][:total_cash] += pet[:price]
+  end
 end
+
+
 
 
 
